@@ -1,16 +1,10 @@
-<script setup lang="ts">
-import axios from "axios"
-
-axios.get("/api/v1/posts")
-.then(response => console.log(response));
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="mb-4">
     <ul class="nav nav-pills justify-content-center">
       <li class="nav-item">
-        <RouterLink class="nav-link" to="">일상</RouterLink>
+        <RouterLink class="nav-link active" to="">일상</RouterLink>
       </li>
       <li class="nav-item">
         <RouterLink class="nav-link" to="">운동</RouterLink>
@@ -45,19 +39,19 @@ axios.get("/api/v1/posts")
 
   <div class="post">
     <ul class="list-group">
-      <li class="list-group-item d-flex board-header">
-        <div class="col-2">no</div>
-        <div class="col-2">카테고리</div>
-        <div class="col-4">제목</div>
-        <div class="col-2">작성일</div>
-        <div class="col-2">조회수</div>
+      <li class="list-group-item d-flex justify-content-between align-items-center board-header">
+        <div class="col-md-1">글번호</div>
+        <div class="col-md-2">카테고리</div>
+        <div class="col-md-4">제목</div>
+        <div class="col-md-2">작성일</div>
+        <div class="col-md-1">조회수</div>
       </li>
-      <li class="list-group-item d-flex">
-        <div class="col-2">1</div>
-        <div class="col-2">여행</div>
-        <div class="col-4"><RouterLink to="/post/detail">첫 번째 글</RouterLink></div>
-        <div class="col-2">2023-10-01</div>
-        <div class="col-2">100</div>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="col-md-1">1</div>
+        <div class="col-md-2">여행</div>
+        <div class="col-md-4">첫 번째 글</div>
+        <div class="col-md-2">2023-10-01</div>
+        <div class="col-md-1">100</div>
       </li>
     <!-- 추가적인 게시글 항목은 필요에 따라 추가 -->
     </ul>
@@ -98,7 +92,6 @@ axios.get("/api/v1/posts")
 <style scoped>
   .nav-item {
     margin-right: 2px;
-    color: #333;
   }
   .nav-item:last-child {
     margin-right: 0;

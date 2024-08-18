@@ -1,19 +1,15 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import CustomHeader from '@/components/Header.vue'
+import CustomFooter from '@/components/Footer.vue'
+import MainContent from "@/components/MainContent.vue"
 </script>
 
 <template>
-  <header>
-    <h2>Reply Board</h2>
+  <CustomHeader />
 
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <MainContent />
 
-  <RouterView />
+  <CustomFooter />
 </template>
 
 <style scoped>
