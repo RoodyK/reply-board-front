@@ -5,6 +5,7 @@ import { plainToInstance } from "class-transformer";
 import Post from "@/entity/post/Post";
 import PostSummary from "@/entity/post/PostSummary";
 import Paging from "@/entity/Paging";
+import PostEdit from "@/entity/post/PostEdit";
 
 @singleton()
 export default class PostRepository {
@@ -27,6 +28,15 @@ export default class PostRepository {
     })
     .then((response) => {
       return plainToInstance(Post, response.getData());
+    })
+  }
+
+  public async getPostByEdit(postId: number): Promise<PostEdit> {
+    return this.httpRepository.get({
+      path: `/api/v1/posts/${postId}`
+    })
+    .then((response) => {
+      return plainToInstance(PostEdit, response.getData());
     })
   }
 
@@ -54,9 +64,16 @@ export default class PostRepository {
     })
   }
 
-  public removePost(postId) {
+  public removePost(postId: number) {
     return this.httpRepository.delete({
       path: `/api/v1/posts/${postId}`
     });
+  }
+
+  public editPost(request: PostEdit) {
+    return this.httpRepository.patch({
+      path: `/api/v1/posts/${request.id}`,
+      data: request
+    })
   }
 }

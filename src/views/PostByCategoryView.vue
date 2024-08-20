@@ -73,7 +73,7 @@ const doSearch = function() {
   <div class="mb-4">
     <ul class="nav nav-pills justify-content-center">
       <li class="nav-item" v-for="category in state.categoryList" :key="category.id" :class="{ active: props.categoryId == category.id }">
-        <RouterLink :key="$route.fullPath" class="nav-link" :to="{ name: 'PostByCategoryView', params: { categoryId: category.id } }">{{ category.name }}</RouterLink>
+        <RouterLink :key="$route.fullPath" class="nav-link" :to="{ name: 'PostByCategory', params: { categoryId: category.id } }">{{ category.name }}</RouterLink>
       </li>
     </ul>
   </div>

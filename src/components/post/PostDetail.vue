@@ -51,6 +51,10 @@ onMounted(() => {
     state.memberProfile = saveProfile;
   }
 })
+
+const goEditPage = function() {
+  router.push({ name: "PostEdit", params: { postId: props.post.id } });
+}
 </script>
 
 <template>
@@ -82,7 +86,7 @@ onMounted(() => {
 
     <div class="d-flex justify-content-end mt-3">
         <button type="button" class="btn btn-primary me-2" @click="prevPage()">뒤로가기</button>
-        <button type="button" class="btn btn-primary me-2" v-if="state.memberProfile != null && state.memberProfile.id == props.post.memberId">수정</button>
+        <button type="button" class="btn btn-primary me-2" v-if="state.memberProfile != null && state.memberProfile.id == props.post.memberId" @click="goEditPage()">수정</button>
         <button type="button" class="btn btn-primary" v-if="state.memberProfile != null && state.memberProfile.id == props.post.memberId" @click="removePost()">삭제</button>
     </div>
   </div>

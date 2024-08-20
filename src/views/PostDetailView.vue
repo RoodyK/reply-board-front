@@ -23,7 +23,6 @@ const state = reactive<StateType>({
 const getPost = function() {
   postRepository.getPost(props.postId)
   .then((response: Post) => {
-    console.log(response)
     state.post = response;
   })
 }

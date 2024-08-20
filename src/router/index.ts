@@ -4,6 +4,7 @@ import LoginView from '@/views/auth/LoginView.vue'
 import SignupView from '@/views/auth/SignupView.vue'
 import PostCreateView from '@/views/PostCreateView.vue'
 import PostDetailView from '@/views/PostDetailView.vue'
+import PostEditView from '@/views/PostEditView.vue'
 import PostByCategoryView from '@/views/PostByCategoryView.vue'
 
 const router = createRouter({
@@ -35,9 +36,15 @@ const router = createRouter({
       component: PostDetailView,
       props: true
     },
+        {
+      path: '/post/:postId/edit',
+      name: 'PostEdit',
+      component: PostEditView,
+      props: true
+    },
     {
       path: '/category/:categoryId/post',
-      name: 'PostByCategoryView',
+      name: 'PostByCategory',
       component: PostByCategoryView,
       props: true
     }
