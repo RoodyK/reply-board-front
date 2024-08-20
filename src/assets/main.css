@@ -1,46 +1,59 @@
 a {
-    text-decoration: none;
-    color: #333;
+  text-decoration: none;
+  color: #333;
 }
 body {
-    padding-top: 80px; /* 헤더 높이만큼 상단 패딩 추가 */
-    padding-bottom: 80px; /* 푸터 높이만큼 하단 패딩 추가 */
+  padding-top: 80px; /* 헤더 높이만큼 상단 패딩 추가 */
+  padding-bottom: 80px; /* 푸터 높이만큼 하단 패딩 추가 */
 }
 .board-header {
-    font-weight: bold;
-    /*background-color: #D1C4E9;*/
+  font-weight: bold;
+  /*background-color: #D1C4E9;*/
 }
 .btn-primary {
-    background-color: #c2b5fc;
-    border-color: #c2b5fc;
+  background-color: #c2b5fc;
+  border-color: #c2b5fc;
 }
 .btn-primary:hover {
-    background-color: #b6a6fc;
-    border-color: #b6a6fc;
+  background-color: #b6a6fc;
+  border-color: #b6a6fc;
 }
 .nav-item {
-    border: 1px solid #f6f4ff; 
+  border: 1px solid #f6f4ff; 
 }
 .nav-item .nav-link {
-    color: #333;
+  color: #333;
 }
+.nav-item.active {
+  background-color: #b6a6fc;
+}
+.nav-item.active > .nav-link {
+  color: #fff;
+}
+
 .nav-link:hover {
-    color: #795bfd;
+  color: #795bfd;
 }
 .nav-pills .nav-link.active {
-    background-color: #c2b5fc;
+  background-color: #c2b5fc;
 }
 .page-link {
-    color: #795bfd;
+  color: #795bfd;
 }
 header, footer {
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
 header {
-    top: 0;
+  top: 0;
 }
 footer {
-    bottom: 0;
+  bottom: 0;
+}
+
+/* toast */
+.custom-toast {
+  background-color: #f6f4ff; 
+  color: #fd5454; 
 }

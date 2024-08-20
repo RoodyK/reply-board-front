@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/auth/LoginView.vue'
 import SignupView from '@/views/auth/SignupView.vue'
-import CreateView from '@/views/PostCreateView.vue'
+import PostCreateView from '@/views/PostCreateView.vue'
 import PostDetailView from '@/views/PostDetailView.vue'
-import PostListView from '@/views/PostListView.vue'
+import PostByCategoryView from '@/views/PostByCategoryView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,17 +27,19 @@ const router = createRouter({
     {
       path: '/post/create',
       name: 'PostCreate',
-      component: CreateView
+      component: PostCreateView
     },
     {
-      path: '/post/detail',
+      path: '/post/:postId',
       name: 'PostDetail',
-      component: PostDetailView
+      component: PostDetailView,
+      props: true
     },
     {
-      path: '/category/post',
-      name: 'PostList',
-      component: PostListView
+      path: '/category/:categoryId/post',
+      name: 'PostByCategoryView',
+      component: PostByCategoryView,
+      props: true
     }
     // {
     //   path: '/about',

@@ -1,40 +1,42 @@
-<script setup>
+<script setup lang="ts">
 import CommentWrite from '@/components/comment/CommentWirte.vue'
+import { onBeforeMount, reactive } from 'vue';
+import PostRepository from '../repository/PostRepository';
+import { container } from 'tsyringe';
+import Post from '@/entity/post/Post';
+import PostDetail from '@/components/post/PostDetail.vue'
+
+const postRepository = container.resolve(PostRepository);
+
+type StateType = {
+  post: Post
+}
+
+const props = defineProps<{
+  postId: number
+}>()
+
+const state = reactive<StateType>({
+  post: new Post()
+})
+
+const getPost = function() {
+  postRepository.getPost(props.postId)
+  .then((response: Post) => {
+    console.log(response)
+    state.post = response;
+  })
+}
+
+onBeforeMount(() => {
+  getPost();
+})
 </script>
+
 
 <template>
   <!-- 게시판 상세 내용 -->
-  <div class="container my-5">
-    <div class="card">
-      <div class="card-header board-header">
-        <div class="row">
-          <div class="col-4">카테고리명</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="row mb-3">
-          <div class="col-2">글 번호</div>
-          <div class="col-10">글 제목</div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-4">작성자명</div>
-          <div class="col-4">등록일 : <span>2023-02-02</span></div>
-          <div class="col-4">조회수 : <span>100000</span></div>
-        </div>
-        <hr>
-        <div>
-          <p>게시글 내용입니다.</p>
-          <p>게시글 내용입니다.</p>
-          <p>게시글 내용입니다.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-end mt-3">
-        <button type="button" class="btn btn-primary me-2">뒤로가기</button>
-        <button type="button" class="btn btn-primary">글 수정</button>
-    </div>
-  </div>
+  <PostDetail :post="state.post"/>
 
   <CommentWrite />
 
@@ -52,6 +54,7 @@ import CommentWrite from '@/components/comment/CommentWirte.vue'
         </div>
       </div>
     </div>
+    
     <!-- 답글 -->
     <div class="card mb-3 reply-card">
       <div class="card-body">
@@ -86,7 +89,7 @@ import CommentWrite from '@/components/comment/CommentWirte.vue'
                   </div>
                   <div class="col">
                     <label for="replyPassword" class="form-label">비밀번호</label>
-                    <input type="password" class="form-control" id="replyPassword" placeholder="비밀번호">
+                    <input type="password" autocomplete="off" class="form-control" id="replyPassword" placeholder="비밀번호">
                   </div>
                 </div>
                 <div class="mb-3">
@@ -121,7 +124,7 @@ import CommentWrite from '@/components/comment/CommentWirte.vue'
                   </div>
                   <div class="col">
                     <label for="editPassword" class="form-label">비밀번호</label>
-                    <input type="password" class="form-control" id="editPassword" placeholder="비밀번호">
+                    <input type="password" autocomplete="off" class="form-control" id="editPassword" placeholder="비밀번호">
                   </div>
                 </div>
                 <div class="mb-3">

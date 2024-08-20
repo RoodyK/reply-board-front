@@ -2,7 +2,7 @@
 import PostSummary from '@/entity/post/PostSummary';
 import PostRepository from '@/repository/PostRepository';
 import { container } from 'tsyringe';
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, reactive, ref, watch } from 'vue';
 import PostList from '@/components/post/PostList.vue'
 import Paging from '@/entity/Paging';
 import ProfileRepository from '@/repository/ProfileRepository';
@@ -16,7 +16,11 @@ const profileRepository = container.resolve(ProfileRepository);
 const categoryRepository = container.resolve(CategoryRepository);
 const toast = container.resolve(Toast);
 
-const categoryList = function() {
+const props = defineProps<{
+  categoryId: number
+}>()
+
+const getCategoryList = function() {
   categoryRepository.getCategoryList()
   .then((response) => {
     state.categoryList = response;
@@ -39,7 +43,7 @@ const state = reactive<StateType>({
 })
 
 const getPostList = function(page = 1) {
-  postRepository.getPostList(page, searchValue.value)
+  postRepository.getCategoryByPostList(props.categoryId, page, searchValue.value)
   .then((response: Paging<PostSummary>) => {
     state.postList = response;
   })
@@ -51,23 +55,29 @@ const goToPage = (page: number) => {
 };
 
 onMounted(() => {
+  getCategoryList()
   getPostList();
-  categoryList();
 })
 
+// 카테고리 변경에 따른 값을 가져오기
+watch(() => props.categoryId, () => {
+  getPostList();
+});
+
 const doSearch = function() {
-  getPostList(1);
+  getPostList();
 }
 </script>
 
 <template>
   <div class="mb-4">
     <ul class="nav nav-pills justify-content-center">
-      <li class="nav-item" v-for="category in state.categoryList" :key="category.id">
-        <RouterLink class="nav-link" :to="{ name: 'PostByCategoryView', params: { categoryId: category.id } }">{{ category.name }}</RouterLink>
+      <li class="nav-item" v-for="category in state.categoryList" :key="category.id" :class="{ active: props.categoryId == category.id }">
+        <RouterLink :key="$route.fullPath" class="nav-link" :to="{ name: 'PostByCategoryView', params: { categoryId: category.id } }">{{ category.name }}</RouterLink>
       </li>
     </ul>
   </div>
+
   <div>
     <div class="d-flex justify-content-end mb-3" v-if="profileRepository.getProfile() != null">
       <RouterLink to="/post/create" class="btn btn-primary create">글 등록</RouterLink>
