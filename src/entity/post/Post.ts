@@ -13,7 +13,7 @@ export default class Post {
 
   // json -> class, class -> json으로 변환할 때 둘 다 동작하므로 toClassOnly: true를 줘야함 toPlainOnly도 있음
   @Transform(({ value }) => LocalDateTime.parse(value).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), { toClassOnly: true })
-  public regDate = LocalDateTime.now()
+  public regDate = ""
 
   public getShortenTitle() {
     if (this.title.length > 10) {

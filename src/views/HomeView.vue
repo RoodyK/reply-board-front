@@ -46,7 +46,7 @@ const getPostList = function(page = 1) {
 }
 
 // 특정 페이지로 이동하는 함수
-const goToPage = (page: number) => {
+const movePage = (page: number) => {
   getPostList(page);
 };
 
@@ -101,7 +101,7 @@ const doSearch = function() {
     :currentPage="state.postList.page"
     :pageSize="state.postList.size"
     :totalCount="state.postList.totalCount"
-    @goToPage="goToPage"
+    @movePage="movePage"
   />
 </template>
 

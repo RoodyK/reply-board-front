@@ -1,5 +1,5 @@
 import axios, { AxiosError, type AxiosInstance, type AxiosResponse } from "axios"
-import HttpError from "./HttpError"
+import HttpError, { type ErrorData } from "./HttpError"
 import HttpResponse from "./HttpResponse"
 import { singleton } from "tsyringe"
 
@@ -29,8 +29,8 @@ export default class AxiosHttpClient {
     .then((response: AxiosResponse) => {
       return Promise.resolve(new HttpResponse(response));
     })
-    .catch((e: AxiosError) => {
+    .catch((e: AxiosError<ErrorData>) => {
       return Promise.reject(new HttpError(e));
-    })
+  });
   }
 }

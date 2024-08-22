@@ -2,6 +2,27 @@
 
 reply-board 프로젝트의 front 부분을 vue로 생성
 
+## 프로젝트 빌드
+
+`npm run build`
+
+dist 디렉토리(빌드된 파일)를 reply-board 스프링부트 리포지토리의 프로젝트를 clone 받은 후에 main/resource/static 폴더에 옮긴 후 프로젝트를 실행하면 된다.  
+
+```bash
+static
+  - assets
+    - index.js
+    - index.css
+  - index.html
+  - favicon.ico
+```
+
+- [reply-board-backend](https://github.com/RoodyK/reply-board)
+
+위처럼 트리구조를 이루면 된다.   
+<br/>
+<br/>
+
 ### tsyringe 라이브러리
 
 [tsyringe](https://github.com/microsoft/tsyringe)

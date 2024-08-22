@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
 
 // `fileURLToPath`와 `URL`은 Node.js의 `url` 모듈에서 가져옵니다. 이들은 파일 경로를 URL 객체로 변환하거나 그 반대로 변환하는 데 사용됩니다.
 // `defineConfig`는 Vite의 기본 구성 함수로, Vite 설정을 정의하는 데 사용됩니다.
@@ -13,8 +12,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      // '@': fileURLToPath(new URL('./src', import.meta.url))
-      '@': path.resolve(__dirname, './src')
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
   server: {
@@ -42,5 +40,4 @@ export default defineConfig({
 - **플러그인 사용**: Vue.js 플러그인을 사용하여 Vue.js 파일을 처리합니다.
 - **서버 설정**: 개발 서버가 3000번 포트에서 실행되도록 설정합니다.
 - **경로 별칭**: `'@'`를 프로젝트의 `src` 디렉토리로 매핑하여 경로 설정을 간편하게 합니다.
-
 */

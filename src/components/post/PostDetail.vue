@@ -18,11 +18,11 @@ const props = defineProps<{
 }>()
 
 type StateType = {
-  memberProfile: MemberProfile | null
+  memberProfile: MemberProfile
 }
 
 const state = reactive<StateType>({
-  memberProfile: null
+  memberProfile: new MemberProfile()
 })
 
 const prevPage = function() {

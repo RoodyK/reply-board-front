@@ -16,4 +16,8 @@ export default class HttpResponse {
   public getData = () => {
     return this.data;
   }
+
+  public getResult = () => {
+    return this.result;
+  }
 }
